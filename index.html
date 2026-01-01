@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MineDrop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- INICIO -->
+  <div id="pantallaInicio">
+    <h1>MineDrop</h1>
+    <button onclick="mostrarPantalla('pantallaLogin')">Iniciar sesión</button>
+    <button onclick="mostrarPantalla('pantallaRegistro')">Registrarse</button>
+    <button onclick="mostrarPantalla('pantallaPrincipal')">Explorar Addons</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="pantallaLogin" style="display:none;">
+    <h2>Login</h2>
+    <input id="logNombre" placeholder="Usuario">
+    <input id="logPassword" type="password" placeholder="Contraseña">
+    <button id="loginBtn">Ingresar</button>
+    <button onclick="mostrarPantalla('pantallaRecuperar')">Recuperar cuenta</button>
+  </div>
+
+  <!-- REGISTRO -->
+  <div id="pantallaRegistro" style="display:none;">
+    <h2>Registro</h2>
+    <input id="regNombre" placeholder="Usuario">
+    <input id="regPassword" type="password" placeholder="Contraseña">
+    <input id="regPregunta" placeholder="Pregunta secreta">
+    <input id="regRespuesta" placeholder="Respuesta secreta">
+    <input id="regFoto" type="file" accept="image/*">
+    <button id="registroBtn">Registrarse</button>
+  </div>
+
+  <!-- RECUPERAR -->
+  <div id="pantallaRecuperar" style="display:none;">
+    <h2>Recuperar cuenta</h2>
+    <input id="recNombre" placeholder="Usuario">
+    <input id="recRespuesta" placeholder="Respuesta secreta">
+    <input id="recNuevaPass" type="password" placeholder="Nueva contraseña">
+    <button onclick="recuperarCuenta()">Recuperar</button>
+  </div>
+
+  <!-- PRINCIPAL -->
+  <div id="pantallaPrincipal" style="display:none;">
+    <header>
+      <img id="avatarPerfil" src="img/default.png" class="perfil-bolita" onclick="mostrarPantalla('pantallaPerfil')">
+      <span id="nombreUsuario"></span>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </header>
+
+    <div class="menu-principal">
+      <input id="buscar" placeholder="Buscar addons...">
+      <select id="categoria">
+        <option value="todos">Todas</option>
+        <option value="mods">Mods</option>
+        <option value="skins">Skins</option>
+        <option value="maps">Maps</option>
+      </select>
+      <button id="btnPublicar" onclick="mostrarPantalla('pantallaPublicar')">Publicar Addon</button>
+      <button onclick="exportarAddons()">Exportar Datos</button>
+      <input type="file" onchange="importarAddons(this.files[0])">
+    </div>
+
+    <div class="cards" id="cards"></div>
+  </div>
+
+  <!-- PUBLICAR -->
+  <div id="pantallaPublicar" style="display:none;">
+    <h2>Publicar Addon</h2>
+    <input id="titulo" placeholder="Título">
+    <input id="descripcion" placeholder="Qué trae">
+    <input id="tags" placeholder="Tags (separados por coma)">
+    <input id="imagen" type="file" accept="image/*">
+    <input id="archivoAddon" type="file" multiple>
+    <button id="btnPublicar">Publicar</button>
+  </div>
+
+  <!-- PERFIL -->
+  <div id="pantallaPerfil" style="display:none;">
+    <h2>Perfil</h2>
+    <img id="avatarPerfil" src="img/default.png">
+    <p id="nombreUsuario"></p>
+    <p id="preguntaSecreta"></p>
+    <button onclick="editarPerfil()">Editar perfil</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
